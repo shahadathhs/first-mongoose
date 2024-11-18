@@ -1,18 +1,17 @@
-import { Server } from "http"
-import app from "./app"
-import mongoose from "mongoose"
-import { config } from "./config/config"
+import { Server } from 'http'
+import app from './app'
+import mongoose from 'mongoose'
+import { config } from './config/config'
 
 const port: number = config.port as number
 const DATABASE_URL: string = config.mongo.url
 
-
 let server: Server
 
-async function start () {
+async function start() {
   // ** Connect to MongoDB **
   await mongoose.connect(DATABASE_URL).then(() => {
-    console.log("MongoDB connected!")
+    console.log('MongoDB connected!')
   })
 
   // ** Start Server **
@@ -24,36 +23,36 @@ async function start () {
 // ** Call start function **
 start()
 
-process.on("SIGTERM", () => {
-  console.log("SIGTERM is received")
+process.on('SIGTERM', () => {
+  console.log('SIGTERM is received')
   if (server) {
     server.close()
   }
 })
 
-process.on("SIGINT", () => {
-  console.log("SIGINT is received")
+process.on('SIGINT', () => {
+  console.log('SIGINT is received')
   if (server) {
     server.close()
   }
 })
 
-process.on("exit", () => {
-  console.log("exit is received")
+process.on('exit', () => {
+  console.log('exit is received')
   if (server) {
     server.close()
   }
 })
 
-process.on("uncaughtException", () => {
-  console.log("uncaughtException is received")
+process.on('uncaughtException', () => {
+  console.log('uncaughtException is received')
   if (server) {
     server.close()
   }
 })
 
-process.on("unhandledRejection", () => {
-  console.log("unhandledRejection is received")
+process.on('unhandledRejection', () => {
+  console.log('unhandledRejection is received')
   if (server) {
     server.close()
   }
