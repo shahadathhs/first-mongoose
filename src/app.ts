@@ -1,5 +1,6 @@
 import express, { Application, NextFunction, Request, Response } from 'express'
 import cors from 'cors'
+import { StudentRoutes } from './app/modules/student/student.route'
 
 // ** express app **
 const app: Application = express()
@@ -37,6 +38,8 @@ const logger = (req: any, res: Response, next: NextFunction) => {
 app.get('/', logger, (req: Request, res: Response) => {
   res.send('Hello World!')
 })
+
+app.use('/api/v1/students', StudentRoutes)
 
 // ** Not Found Error Handler **
 app.all('*', (req: Request, res: Response) => {
