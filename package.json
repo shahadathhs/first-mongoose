@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "build:dev": "tsc -w",
-    "start": "nodemon dist/server.js",
+    "start": "node dist/server.js",
     "start:dev": "nodemon src/server.ts",
     "dev": "tsc --watch",
     "lint": "eslint .",
